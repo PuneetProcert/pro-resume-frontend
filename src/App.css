@@ -1,0 +1,194 @@
+.dashboard__conatiner {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+.create__btn {
+  margin: 10px 15px;
+  font-size: 15px;
+  border: none;
+  background-color: #183efa;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create__btn:hover {
+  background-color: #2337c6;
+}
+
+.service__btn {
+  margin: 10px 15px;
+  font-size: 15px;
+  border: none;
+  background-color: #183efa;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigation__conatiner {
+  margin-top: 20px;
+}
+
+.navigation__list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  flex-wrap: wrap;
+  height: 30px;
+}
+
+.particular__option {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 5px 10px;
+  position: relative;
+  font-family: Arial;
+  font-weight: 500;
+  color: #707070;
+  font-weight: 520;
+  margin-right: 10px;
+}
+
+.particular__option:after {
+  content: "";
+  position: absolute;
+  background-color: #1e69d2;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+
+.particular__option:hover {
+  color: rgb(39, 39, 249);
+}
+
+.particular__option:hover:after {
+  width: 100%;
+}
+.particular__option.active {
+  color: rgb(39, 39, 249);
+}
+.particular__option.active:after {
+  content: "";
+  position: absolute;
+  background-color: rgb(39, 39, 249);
+  height: 3px;
+  width: 100%;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+
+.contact__form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.contact__form form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.contact__form input {
+  padding: 10px;
+  border: 2px solid #707070;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  margin-right: 20px;
+}
+
+.contact__form input:focus {
+  border-color: #1e69d2;
+  outline: none;
+}
+
+.contact__form input::placeholder {
+  color: #888;
+}
+
+.contact__form button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.contact__form button:hover {
+  background-color: #0056b3;
+}
+
+.contact__header {
+  font-size: x-large;
+  color: rgb(61, 66, 70);
+}
+
+.contact__form textarea {
+  padding: 10px;
+  border: 2px solid #707070;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.contact__form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit__btn button {
+  padding: 10px 15px;
+  background-color: rgb(97, 233, 97);
+  color: rgb(53, 47, 47);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.submit__btn button:hover {
+  background-color: rgb(32, 186, 32);
+  color: white;
+}
+
+.dashboard__nav__conatiner {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+}
+
+.cmp__name {
+  font-size: 36px;
+  color: rgb(61, 66, 70);
+  margin: 5px 10px;
+  cursor: pointer;
+}
+
+.error {
+  color: #d9534f;
+  font-size: 10px;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
