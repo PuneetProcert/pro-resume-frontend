@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { enhancePrompt } from "../../api";
+import { addUserToDb, enhancePrompt } from "../../api";
 import "../../App.css";
 
 const resumeOptions = [
@@ -94,8 +94,15 @@ const ResumeDashBoard = () => {
   const submitDataHandler = () => {
     console.log("submitDataHandler");
     console.log(values);
+    sendUserDataToDb(values);
     localStorage.setItem("formData", JSON.stringify(values));
   };
+
+  const sendUserDataToDb = (values) => {
+    addUserToDb(values).then((result)=>{
+      console.log(result);
+    })
+  }
 
   const validationSchema = Yup.object({
     contact: Yup.object({

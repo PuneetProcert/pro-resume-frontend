@@ -34,3 +34,32 @@ export const enhancePrompt = (prompt) => {
     });
 };
 
+
+export const addUserToDb = (values) => {
+  return axios({
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    url: `${baseUrl}user`,
+    data:values
+  })
+  .then(function (response) {
+      return response;
+  })
+  .catch(function (error) {
+      console.log(error);
+  });
+};
+
+export const getUserById = (id) => {
+  return axios({
+    method: "get",
+    headers: { "Content-Type": "application/json" },
+    url: `${baseUrl}user/${id}`,
+  })
+  .then(function (response) {
+      return response;
+  })
+  .catch(function (error) {
+      console.log(error);
+  });
+};
