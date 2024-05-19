@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { enhancePrompt } from "../../api";
 import "../../App.css";
 
 const resumeOptions = [
@@ -73,6 +74,7 @@ const initialValues = {
 const ResumeDashBoard = () => {
   const [option, setOption] = useState("");
   const [open, setOpen] = useState(false);
+  const [enhancedValue , setEnhancedValue] = useState('');
 
   const handleOption = (value) => {
     if (option === value) {
@@ -81,6 +83,13 @@ const ResumeDashBoard = () => {
       setOption(value);
     }
   };
+
+  const handleEnhanceWithAI = (prompt) =>{
+    enhancePrompt(prompt).then((rest)=>{
+      // values.experience.summary_of_work = rest;
+      setEnhancedValue(rest);
+    })
+  }
 
   const submitDataHandler = () => {
     console.log("submitDataHandler");
@@ -285,12 +294,13 @@ const ResumeDashBoard = () => {
                 name="experience.summary_of_work"
                 onChange={handleChange}
                 type="text"
-                value={values.experience.summary_of_work}
+                value={enhancedValue!=='' ? enhancedValue : values.experience.summary_of_work}
                 rows="10"
                 cols="30"
               />
               <div className="contact__btn">
                 <button>savee and next </button>
+                <button onClick={()=>handleEnhanceWithAI(values.experience.summary_of_work)}>Enhance with AI </button>
               </div>
             </form>
           </div>
@@ -404,12 +414,13 @@ const ResumeDashBoard = () => {
                 name="summary"
                 onChange={handleChange}
                 type="text"
-                value={values.summary}
+                value={enhancedValue !=='' ? enhancedValue : values.summary}
                 rows="10"
                 cols="30"
               />
               <div className="contact__btn">
                 <button>savee and next </button>
+                <button onClick={() => handleEnhanceWithAI(values.summary)}>Enhance with AI </button>
               </div>
             </form>
           </div>
