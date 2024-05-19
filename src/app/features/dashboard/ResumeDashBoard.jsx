@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
 import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { enhancePrompt } from "../../api";
-import "../../App.css";
+import { enhanceFieldWithAi, getDashboardDetails } from "./DashboardSlilce";
 
 const resumeOptions = [
   {
@@ -72,9 +72,12 @@ const initialValues = {
 };
 
 const ResumeDashBoard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [option, setOption] = useState("");
   const [open, setOpen] = useState(false);
-  const [enhancedValue , setEnhancedValue] = useState('');
+  const [enhancedValue, setEnhancedValue] = useState("");
 
   const handleOption = (value) => {
     if (option === value) {
@@ -84,12 +87,18 @@ const ResumeDashBoard = () => {
     }
   };
 
-  const handleEnhanceWithAI = (prompt) =>{
-    enhancePrompt(prompt).then((rest)=>{
-      // values.experience.summary_of_work = rest;
-      setEnhancedValue(rest);
-    })
-  }
+  const handleEnhanceWithAI = (prompt) => {
+    try {
+      const response = dispatch(enhanceFieldWithAi(prompt));
+      console.log("enhanced", response);
+    } catch (error) {
+      console.log(error);
+    }
+    // enhancePrompt(prompt).then((rest) => {
+    //   // values.experience.summary_of_work = rest;
+    //   setEnhancedValue(rest);
+    // });
+  };
 
   const submitDataHandler = () => {
     console.log("submitDataHandler");
@@ -156,6 +165,15 @@ const ResumeDashBoard = () => {
     },
   });
   console.log(errors);
+
+  useEffect(() => {
+    try {
+      const response = dispatch(getDashboardDetails());
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   return (
     <>
@@ -294,13 +312,23 @@ const ResumeDashBoard = () => {
                 name="experience.summary_of_work"
                 onChange={handleChange}
                 type="text"
-                value={enhancedValue!=='' ? enhancedValue : values.experience.summary_of_work}
+                value={
+                  enhancedValue !== ""
+                    ? enhancedValue
+                    : values.experience.summary_of_work
+                }
                 rows="10"
                 cols="30"
               />
               <div className="contact__btn">
                 <button>savee and next </button>
-                <button onClick={()=>handleEnhanceWithAI(values.experience.summary_of_work)}>Enhance with AI </button>
+                <button
+                  onClick={() =>
+                    handleEnhanceWithAI(values.experience.summary_of_work)
+                  }
+                >
+                  Enhance with AI{" "}
+                </button>
               </div>
             </form>
           </div>
@@ -414,13 +442,15 @@ const ResumeDashBoard = () => {
                 name="summary"
                 onChange={handleChange}
                 type="text"
-                value={enhancedValue !=='' ? enhancedValue : values.summary}
+                value={enhancedValue !== "" ? enhancedValue : values.summary}
                 rows="10"
                 cols="30"
               />
               <div className="contact__btn">
                 <button>savee and next </button>
-                <button onClick={() => handleEnhanceWithAI(values.summary)}>Enhance with AI </button>
+                <button onClick={() => handleEnhanceWithAI(values.summary)}>
+                  Enhance with AI{" "}
+                </button>
               </div>
             </form>
           </div>

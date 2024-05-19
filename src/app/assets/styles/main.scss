@@ -1,0 +1,32 @@
+//@import 'variables'
+@import "./variables.scss";
+@import "./mixin.scss";
+
+//@import page style Start
+@import "./layout.scss";
+@import "./app.scss";
+
+html {
+  height: 100%;
+  font-size: 1rem;
+
+  @media screen and (min-width: 1600px) {
+    font-size: 1.3rem;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $roboto !important;
+  height: 100%;
+}
+
+#root,
+.App {
+  height: 100%;
+}
+
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}

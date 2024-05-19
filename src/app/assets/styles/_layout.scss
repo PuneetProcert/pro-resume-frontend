@@ -1,0 +1,92 @@
+post-login-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  // padding-left: calculateRem(48px);
+}
+
+.post-login-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.post-login-header {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: calculateRem(10px) calculateRem(30px) calculateRem(10px)
+    calculateRem(30px);
+  height: calculateRem(56px);
+  box-sizing: border-box;
+  box-shadow: 0 calculateRem(1px) calculateRem(2px) rgba(0, 0, 0, 0.2);
+  color: rgba(black, 0.74);
+}
+
+.post-login-content-area {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  overflow: auto;
+  @include custom-scroll(light);
+  height: calc(100% - 7.188rem);
+  padding: calculateRem(10px) calculateRem(20px) calculateRem(10px);
+}
+
+.post-login-footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: calculateRem(40px);
+  @include font-size(10px);
+  line-height: pxToPercent(12px, 10px);
+  background: $panel-header-bg;
+  color: $light-grey8;
+
+  .chatbot {
+    position: fixed;
+    right: calculateRem(-74px);
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: calculateRem(110px);
+    height: calculateRem(36px);
+    padding: calculateRem(3px);
+    border-radius: calculateRem(25px) 0 0 calculateRem(25px);
+    background: var(--primary);
+    box-sizing: border-box;
+    @include font-size(12px);
+    line-height: pxToPercent(14px, 12px);
+    color: $white;
+    transition: all ease 0.5s;
+    cursor: pointer;
+
+    img {
+      margin-top: calculateRem(3px);
+      margin-right: calculateRem(6px);
+      width: calculateRem(29px);
+
+      &.normal {
+        display: block;
+      }
+
+      &.grey {
+        display: none;
+      }
+    }
+
+    &:hover {
+      right: 0;
+    }
+  }
+}

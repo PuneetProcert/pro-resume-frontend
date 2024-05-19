@@ -1,15 +1,22 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
-import ResumeDashBoard from "./app/components/ResumeDashBoard";
+import PostLoginWrapper from "./app/containers/PostLoginWrapper";
+import ResumeDashBoard from "./app/features/dashboard/ResumeDashBoard";
 
 function App() {
   return (
     <>
-      <div className="112">
-        <h1>Resume builder</h1>
+      <div className="App" data-testid="appTest">
         <Routes>
+          {/**Pre login routes */}
           <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<ResumeDashBoard />} />
+
+          {/**Post login routes */}
+          <Route element={<PostLoginWrapper />}>
+            <Route path="/dashboard" element={<ResumeDashBoard />} />
+            {/* <Route path="access-denied" element={<AccessDenied />} /> */}
+
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Route>
         </Routes>
       </div>
     </>

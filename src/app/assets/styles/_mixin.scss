@@ -1,0 +1,153 @@
+//Font size mixin
+@function calculateRem($size) {
+  $remSize: calc($size / 16px);
+  @return $remSize * 1rem;
+}
+
+@function pxToPercent($value, $context) {
+  $line: calc($value / $context);
+  @return $line;
+}
+
+@mixin font-size($size) {
+  font-size: calculateRem($size);
+}
+
+@mixin dflex($flex, $justify, $align) {
+  display: $flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+/* Media queries mixins */
+/* Breakpoint sizes */
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+$screen-xxl-min: 1400px;
+$screen-xxxl-min: 1920px;
+
+@mixin breakpoint($media) {
+  @if $media==md {
+    @media only screen and (min-width: $screen-md-min) {
+      @content;
+    }
+  } @else if $media==lg {
+    @media only screen and (min-width: $screen-lg-min) {
+      @content;
+    }
+  } @else if $media==xl {
+    @media only screen and (min-width: $screen-xl-min) {
+      @content;
+    }
+  } @else if $media==xl-max {
+    @media only screen and (max-width: $screen-xxl-min) {
+      @content;
+    }
+  } @else if $media==max1200 {
+    @media only screen and (max-width: $screen-xl-min) {
+      @content;
+    }
+  } @else if $media==minmax1200 {
+    @media only screen and (min-width: $screen-xl-min) and (max-width: $screen-xxl-min) {
+      @content;
+    }
+  } @else if $media==xxl {
+    @media only screen and (max-width: $screen-xxl-min) {
+      @content;
+    }
+  } @else if $media==xxl-min {
+    @media only screen and (min-width: $screen-xxxl-min) {
+      @content;
+    }
+  } @else if $media==maxlg {
+    @media only screen and (max-width: $screen-lg-min) {
+      @content;
+    }
+  }
+}
+
+@mixin custom-scroll($color) {
+  @if ($color==light) {
+    &::-webkit-scrollbar-track {
+      border-radius: calculateRem(50px);
+      background-color: $light-grey;
+    }
+
+    &::-webkit-scrollbar {
+      width: calculateRem(6px);
+      height: calculateRem(6px);
+      border-radius: calculateRem(50px);
+      background-color: $light-grey;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: calculateRem(50px);
+      background-color: $light-grey8;
+    }
+
+    // scrollbar-color: $light-grey8 $light-grey;
+    // scrollbar-width: thin;
+  } @else if($color==medium) {
+    &::-webkit-scrollbar-track {
+      border-radius: calculateRem(50px);
+    }
+
+    &::-webkit-scrollbar {
+      width: calculateRem(4px);
+      height: calculateRem(4px);
+      border-radius: calculateRem(50px);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: calculateRem(50px);
+      background-color: #989898;
+    }
+
+    scrollbar-color: #989898 #c5c5c6;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar-track-piece:start {
+      background-color: #ddd;
+      margin-top: calculateRem(10px);
+      border-radius: calculateRem(50px);
+    }
+
+    &::-webkit-scrollbar-track-piece:end {
+      background-color: #ddd;
+      margin-bottom: calculateRem(15px);
+      border-radius: calculateRem(50px);
+    }
+  }
+}
+
+@mixin icomoon($icon, $fontS-size, $position: "before", $replace: false) {
+  // If we're replacing the text, set font-size to 0
+  @if $replace {
+    font-size: 0;
+  }
+  // Pseudo-element properties
+  &:#{$position} {
+    @extend .icon-#{$icon};
+    font-family: "icomoon";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: $fontS-size;
+    @content;
+  }
+}
+@mixin font14() {
+  font-family: $roboto;
+  @include font-size(14px);
+  line-height: pxToPercent(14px, 14px);
+}
+
+@mixin font12() {
+  font-family: $roboto;
+  @include font-size(12px);
+  line-height: pxToPercent(14px, 12px);
+}
