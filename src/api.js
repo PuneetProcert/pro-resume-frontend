@@ -20,7 +20,7 @@ export const defaultFunc = ()=> {
 export const enhancePrompt = (prompt) => {
     return axios({
         method: "post",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { "Content-Type": "application/json" },
         url: `${baseUrl}enhancePrompt`,
         data: {
             prompt: prompt
